@@ -2,6 +2,7 @@
 using LearningSystem.Data.EF;
 using LearningSystem.Data.Entities;
 using LearningSystem.Web.Configuration;
+using LearningSystem.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,22 +17,18 @@ namespace LearningSystem.Web
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext(Configuration.GetConnectionString("DbConnectionString"));
-            services.AddAutoMapper();
+            services
+                .AddDbContext<LearningSystemDbContext>(options => options
+                    .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services
                 .AddIdentity<User, IdentityRole>(options =>
@@ -58,41 +55,68 @@ namespace LearningSystem.Web
                     options.ClientSecret = this.Configuration["Authentication:Google:ClientSecret"];
                 });
 
+            // Add application services.
+            //services.AddDomainServices();
+            services.AddRouting(routing => routing.LowercaseUrls = true);
+            //services.AddSession();
 
-            services.Configure<CookiePolicyOptions>(options =>
+            // Add Auto Mapper
+            services.AddAutoMapper();
+
+            services.AddMvc(options =>
             {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, LearningSystemDbContext dbContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Database migrations
+            app.UseDatabaseMigration();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
-                dbContext.Database.EnsureCreated();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            loggerFactory.AddLogging(Configuration.GetSection("Logging"));
-
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+
             app.UseAuthentication();
-            app.UseMvc();
 
             app.UseMvc(routes =>
             {
+                // Users Profile Route
+                //routes.MapRoute(
+                //    name: "profile",
+                //    template: "users/{username}",
+                //    defaults: new
+                //    {
+                //        controller = "Users",
+                //        action = nameof(UsersController.Profile)
+                //    });
+
+                //Friendly URL blog article routing
+                //routes.MapRoute(
+                //    name: "blog",
+                //    template: "blog/articles/{id}/{title}",
+                //    defaults: new
+                //    {
+                //        area = WebConstants.BlogArea,
+                //        controller = "Articles",
+                //        action = nameof(ArticlesController.Details)
+                //    });
+
+                // Areas Routing
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
