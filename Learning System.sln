@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem.Web", "LearningSystem.Web\LearningSystem.Web.csproj", "{DDD80BC6-3BAB-4B49-8997-5867338DB8B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningSystem.Web", "LearningSystem.Web\LearningSystem.Web.csproj", "{DDD80BC6-3BAB-4B49-8997-5867338DB8B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem.Business", "LearningSystem.Business\LearningSystem.Business.csproj", "{C5D6032D-54E8-4CC1-B0C6-509F880BC392}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningSystem.Data", "LearningSystem.Data\LearningSystem.Data.csproj", "{CB0CB961-6F22-4FBF-B93B-60A16E4EC0C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem.Core", "LearningSystem.Core\LearningSystem.Core.csproj", "{ED565639-2E35-4834-A4A0-D2367894EB99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningSystem.Data.EF", "LearningSystem.Data.EF\LearningSystem.Data.EF.csproj", "{2E03CD61-84A2-4F56-A1AF-5975EA0C58A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem.Data", "LearningSystem.Data\LearningSystem.Data.csproj", "{CB0CB961-6F22-4FBF-B93B-60A16E4EC0C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningSystem.Tests", "LearningSystem.Tests\LearningSystem.Tests.csproj", "{7454F472-DF8D-4239-88FE-5FC06323E811}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem.Data.EF", "LearningSystem.Data.EF\LearningSystem.Data.EF.csproj", "{2E03CD61-84A2-4F56-A1AF-5975EA0C58A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem.Services", "LearningSystem.Services\LearningSystem.Services.csproj", "{C7721EEF-F22F-4247-B309-39D6F3ACCCD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem.Tests", "LearningSystem.Tests\LearningSystem.Tests.csproj", "{7454F472-DF8D-4239-88FE-5FC06323E811}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSystem.Common", "LearningSystem.Common\LearningSystem.Common.csproj", "{9F9679C8-00DA-44E8-90C1-1726AFE5A80F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,6 @@ Global
 		{DDD80BC6-3BAB-4B49-8997-5867338DB8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDD80BC6-3BAB-4B49-8997-5867338DB8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDD80BC6-3BAB-4B49-8997-5867338DB8B7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5D6032D-54E8-4CC1-B0C6-509F880BC392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5D6032D-54E8-4CC1-B0C6-509F880BC392}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5D6032D-54E8-4CC1-B0C6-509F880BC392}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5D6032D-54E8-4CC1-B0C6-509F880BC392}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ED565639-2E35-4834-A4A0-D2367894EB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED565639-2E35-4834-A4A0-D2367894EB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED565639-2E35-4834-A4A0-D2367894EB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED565639-2E35-4834-A4A0-D2367894EB99}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB0CB961-6F22-4FBF-B93B-60A16E4EC0C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB0CB961-6F22-4FBF-B93B-60A16E4EC0C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB0CB961-6F22-4FBF-B93B-60A16E4EC0C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +37,14 @@ Global
 		{7454F472-DF8D-4239-88FE-5FC06323E811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7454F472-DF8D-4239-88FE-5FC06323E811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7454F472-DF8D-4239-88FE-5FC06323E811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7721EEF-F22F-4247-B309-39D6F3ACCCD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7721EEF-F22F-4247-B309-39D6F3ACCCD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7721EEF-F22F-4247-B309-39D6F3ACCCD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7721EEF-F22F-4247-B309-39D6F3ACCCD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F9679C8-00DA-44E8-90C1-1726AFE5A80F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F9679C8-00DA-44E8-90C1-1726AFE5A80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F9679C8-00DA-44E8-90C1-1726AFE5A80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F9679C8-00DA-44E8-90C1-1726AFE5A80F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

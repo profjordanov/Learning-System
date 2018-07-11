@@ -38,8 +38,6 @@ namespace LearningSystem.Web
             // Add Auto Mapper
             services.AddAutoMapper();
 
-            //services.AddTransient<IUsersService, UsersService>();
-
             services
                 .AddIdentity<User, IdentityRole>(options =>
                 {
@@ -66,7 +64,7 @@ namespace LearningSystem.Web
                 });
 
             // Add application services.
-            //services.AddDomainServices();
+            services.AddDomainServices();
             services.AddRouting(routing => routing.LowercaseUrls = true);
             services.AddSession();
 
