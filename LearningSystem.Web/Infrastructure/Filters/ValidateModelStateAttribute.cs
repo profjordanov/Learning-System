@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace LearningSystem.Web.Infrastructure.Filters
 {
+    /// <inheritdoc />
     /// <summary>
     /// This action filter validates the model state if:
     ///     the current controller inherits Controller, 
