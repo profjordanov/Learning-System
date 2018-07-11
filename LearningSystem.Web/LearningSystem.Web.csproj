@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Infrastructure\Mapping\" />
-    <Folder Include="Infrastructure\Filters\" />
   </ItemGroup>
 
 </Project>
