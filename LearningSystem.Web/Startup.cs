@@ -17,9 +17,14 @@ namespace LearningSystem.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            this.Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -29,6 +34,11 @@ namespace LearningSystem.Web
             services
                 .AddDbContext<LearningSystemDbContext>(options => options
                     .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Add Auto Mapper
+            services.AddAutoMapper();
+
+            //services.AddTransient<IUsersService, UsersService>();
 
             services
                 .AddIdentity<User, IdentityRole>(options =>
@@ -58,10 +68,8 @@ namespace LearningSystem.Web
             // Add application services.
             //services.AddDomainServices();
             services.AddRouting(routing => routing.LowercaseUrls = true);
-            //services.AddSession();
+            services.AddSession();
 
-            // Add Auto Mapper
-            services.AddAutoMapper();
 
             services.AddMvc(options =>
             {
@@ -69,7 +77,7 @@ namespace LearningSystem.Web
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, LearningSystemDbContext dbContext)
         {
             // Database migrations
             app.UseDatabaseMigration();
@@ -79,6 +87,7 @@ namespace LearningSystem.Web
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
+                dbContext.Database.EnsureCreated();
             }
             else
             {
