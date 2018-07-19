@@ -16,8 +16,14 @@
 
 •	Student – That is the regular registered user. Can sign up to any course of their choice.
 
-•	Trainer – can assesses students in a course that he is set as trainer
+•	Trainer – can assesses students in a course that he is set as trainer.
 
-•	Blog author –  can publish articles in the blog
+•	Blog author –  can publish articles in the blog.
 
-•	Administrator – can create new courses or edit existing ones and set roles to all users
+•	Administrator – can create new courses or edit existing ones and set roles to all users.
+
+-> Areas
+
+•	Admin – accessible only by administrators where they can create new courses or set roles to users.
+
+•	Blog – accessible by all registered users in any role. Blog authors can publish new articles.
