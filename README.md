@@ -27,3 +27,25 @@
 •	Admin – accessible only by administrators where they can create new courses or set roles to users.
 
 •	Blog – accessible by all registered users in any role. Blog authors can publish new articles.
+
+-> Features
+
+•	Home page should show a list of all courses
+
+•	Users can register by providing username, name, email, password and birthdate or alternatively by creating account with their Facebook or Google profile.
+
+•	Registered users can sign up to any course
+
+•	Registered users can sign up/out of course before its start date
+
+•	Registered users can read all articles from the blog
+
+•	Each user should have Profile page. The profile page should contain list of the courses the user has signed up and grade of that course.
+
+•	Registered users can edit their profile
+
+•	Trainer of a course can place grades to each student signed up to it. Grades can be A, B, C, D, E or F (from highest to lowest)
+
+•	Trainer can assess a student for a course only when the course is over.
+
+•	Blog authors can publish articles in the blog. Once published the article cannot be modified.
