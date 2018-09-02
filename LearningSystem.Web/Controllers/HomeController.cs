@@ -3,41 +3,56 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using LearningSystem.Services;
 using Microsoft.AspNetCore.Mvc;
 using LearningSystem.Web.Models;
+using LearningSystem.Web.Models.HomeModels;
 
 namespace LearningSystem.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ICourseService _courseService;
+        private readonly IUserService _userService;
+
+        public HomeController(ICourseService courseService, IUserService userService)
         {
-            return View();
+            _courseService = courseService;
+            _userService = userService;
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> Index()
         {
-            ViewData["Message"] = "Your application description page.";
+            var model = new HomeIndexViewModel
+            {
+                Courses = await _courseService.AllActiveAsync()
+            };
 
-            return View();
+            return View(model);
         }
 
-        public IActionResult Contact()
+        public async Task<IActionResult> Search(SearchFormModel model)
         {
-            ViewData["Message"] = "Your contact page.";
+            var viewModel = new SearchViewModel
+            {
+                SearchText = model.SearchText
+            };
 
-            return View();
-        }
+            if (model.SearchInCourses)
+            {
+                viewModel.Courses = await _courseService.FindAsync(model.SearchText);
+            }
 
-        public IActionResult Privacy()
-        {
-            return View();
+            if (model.SearchInUsers)
+            {
+                viewModel.Users = await _userService.FindAsync(model.SearchText);
+            }
+
+            return View(viewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

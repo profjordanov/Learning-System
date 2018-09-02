@@ -2,6 +2,7 @@
 using LearningSystem.Data.EF;
 using LearningSystem.Data.Entities;
 using LearningSystem.Web.Configuration;
+using LearningSystem.Web.Controllers;
 using LearningSystem.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -98,7 +99,7 @@ namespace LearningSystem.Web
 
             app.UseMvc(routes =>
             {
-                // Users Profile Route
+                ////Users Profile Route
                 //routes.MapRoute(
                 //    name: "profile",
                 //    template: "users/{username}",
@@ -108,7 +109,7 @@ namespace LearningSystem.Web
                 //        action = nameof(UsersController.Profile)
                 //    });
 
-                //Friendly URL blog article routing
+                ////Friendly URL blog article routing
                 //routes.MapRoute(
                 //    name: "blog",
                 //    template: "blog/articles/{id}/{title}",
